@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.finger_licking"
-        minSdk = 21
+        minSdk = 26
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
@@ -50,7 +50,10 @@ android {
 }
 
 dependencies {
-
+    //domain
+    implementation(project(mapOf("path" to ":domain")))
+    //data
+    implementation(project(mapOf("path" to ":data")))
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
     implementation("androidx.activity:activity-compose:1.7.2")
