@@ -15,3 +15,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "Finger-Licking"
 include(":app")
+include(":data")
+include(":domain")
