@@ -12,8 +12,9 @@ import com.example.data.dto.GetTags
 import com.example.data.dto.Responce
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import okhttp3.mockwebserver.MockWebServer
 
-class RetrofitNetworkClient(private val api: Api, private val context: Context):NetworkClient {
+class RetrofitNetworkClient(private val api: Api, private val context: Context, mockWebServer: MockWebServer ):NetworkClient {
     override suspend fun getProducts(dto: Any): Responce {
         if (isConnected() == false){
             return Responce().apply { resultCode = -1 }
