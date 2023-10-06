@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.example.finger_licking"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.finger_licking"
@@ -54,7 +54,7 @@ dependencies {
     implementation(project(mapOf("path" to ":domain")))
     //data
     implementation(project(mapOf("path" to ":data")))
-    implementation("androidx.core:core-ktx:1.9.0")
+    implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
     implementation("androidx.activity:activity-compose:1.7.2")
     implementation(platform("androidx.compose:compose-bom:2023.03.00"))
@@ -80,6 +80,8 @@ dependencies {
 
     //MockWebServer
     implementation ("com.squareup.okhttp3:mockwebserver:4.11.0")
+    //Coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
 
 
 }

@@ -1,22 +1,18 @@
-package com.example.data.dto.models
-
+package com.example.domain.models
 import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
-
-@Parcelize
-data class CategoriesDto(
+import kotlinx.parcelize.Parcelize
+@kotlinx.android.parcel.Parcelize
+data class Tags(
     val id: Int,
     val name: String
 ) : Parcelable
-
-@Parcelize
-data class TagsDto(
+@kotlinx.android.parcel.Parcelize
+data class Categories(
     val id: Int,
     val name: String
 ) : Parcelable
-
 @Parcelize
-data class ProductsDto(
+data class Product(
     val carbohydrates_per_100_grams: Double,
     val category_id: Int,
     val description: String,
@@ -31,8 +27,7 @@ data class ProductsDto(
     val price_old: Int,
     val proteins_per_100_grams: Double,
     val tag_ids: List<Int>
-) : Parcelable
-
+):Parcelable
 
 
 
