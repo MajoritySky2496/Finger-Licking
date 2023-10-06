@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.example.data"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         minSdk = 26
@@ -35,6 +35,7 @@ android {
 
 dependencies {
     implementation("androidx.annotation:annotation-jvm:1.7.0")
+    implementation(project(mapOf("path" to ":domain")))
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
 
@@ -45,7 +46,5 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     //Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
-    //MockWebServer
-    implementation ("com.squareup.okhttp3:mockwebserver:4.11.0")
 
 }

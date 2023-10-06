@@ -7,25 +7,27 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import com.example.data.NetworkClient
 import com.example.data.dto.GetCategories
-import com.example.data.dto.GetProducts
+import com.example.data.dto.GetProductsRequest
 import com.example.data.dto.GetTags
 import com.example.data.dto.Responce
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import okhttp3.mockwebserver.MockWebServer
 
-class RetrofitNetworkClient(private val api: Api, private val context: Context, mockWebServer: MockWebServer ):NetworkClient {
+
+class RetrofitNetworkClient(private val api: Api, private val context: Context):NetworkClient {
     override suspend fun getProducts(dto: Any): Responce {
         if (isConnected() == false){
             return Responce().apply { resultCode = -1 }
         }
-        if (dto !is GetProducts){
+        if (dto !is GetProductsRequest){
             return Responce().apply { resultCode = 400 }
         }
         return withContext(Dispatchers.IO){
             try {
-                val responce = api.getProducts()
-                responce.apply { resultCode = 200 }
+                val responce = Responce()
+                val result = api.getProducts()
+                responce.apply { resultCode = 200
+                resultProducts = result}
             }catch (e:Throwable){
                 Responce().apply { resultCode = 500 }
             }
@@ -42,8 +44,11 @@ class RetrofitNetworkClient(private val api: Api, private val context: Context, 
         }
         return withContext(Dispatchers.IO){
             try {
-                val responce = api.getCategories()
-                responce.apply { resultCode = 200 }
+                val responce = Responce()
+                val result = api.getCategories()
+
+                responce.apply { resultCode = 200
+                resultCategories = result}
             }catch (e:Throwable){
                 Responce().apply { resultCode = 500 }
             }
@@ -59,14 +64,15 @@ class RetrofitNetworkClient(private val api: Api, private val context: Context, 
         }
          return withContext(Dispatchers.IO){
              try{
-                val responce = api.getTags()
-                responce.apply { resultCode = 200  }
+                 val result = api.getTags()
+                val responce = Responce()
+                responce.apply { resultCode = 200
+                resultTags = result}
             }catch (e:Throwable){
                 Responce().apply { resultCode = 500 }
             }
         }
     }
-
 
     @RequiresApi(Build.VERSION_CODES.M)
     private fun isConnected(): Boolean {
@@ -83,7 +89,5 @@ class RetrofitNetworkClient(private val api: Api, private val context: Context, 
         }
         return false
     }
-
-
 
 }
